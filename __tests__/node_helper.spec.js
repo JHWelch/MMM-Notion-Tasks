@@ -1,13 +1,9 @@
 const { Client } = require('@notionhq/client');
 
-beforeAll(() => {
-  require('../__mocks__/logger');
-});
-
 let helper;
 
 beforeEach(() => {
-  helper = require('../node_helper');
+  helper = require('../node_helper.js');
   helper.setName('MMM-Notion-Tasks');
 });
 
@@ -21,8 +17,10 @@ describe('socketNotificationReceived', () => {
   });
 
   describe('notification matches MMM-Notion-Tasks-FETCH', () => {
-    it('fetches tasks from Notion', async () => {
-      const query = jest.fn();
+    let query;
+
+    beforeEach(() => {
+      query = jest.fn();
       Client.mockImplementation(() => ({
         dataSources: { query },
       }));
@@ -45,7 +43,9 @@ describe('socketNotificationReceived', () => {
           },
         },
       ] }));
+    });
 
+    it('fetches tasks from Notion', async () => {
       await helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
         notionToken: 'secret-token',
         databaseId: 'database-id',
@@ -55,6 +55,17 @@ describe('socketNotificationReceived', () => {
         { id: 'page-id', name: 'Task 1', status: 'In Progress' },
         { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
       ]});
+    });
+
+    it('calls notion with correct parameters', () => {
+      helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
+        notionToken: 'secret-token',
+        databaseId: 'database-id',
+      });
+
+      expect(query).toHaveBeenCalledWith({
+        data_source_id: 'database-id',
+      });
     });
   });
 });

@@ -26,6 +26,28 @@ module.exports = NodeHelper.create({
 
     const response = await notion.dataSources.query({
       data_source_id: databaseId,
+      filter: {
+        and: [
+          {
+            property: 'Status',
+            status: {
+              does_not_equal: 'Done',
+            },
+          },
+          {
+            property: 'Due Date',
+            date: {
+              on_or_before: (new Date()).toISOString().split('T')[0],
+            },
+          },
+        ],
+      },
+      sorts: [
+        {
+          property: 'Due Date',
+          direction: 'ascending',
+        },
+      ],
     });
 
     const tasks = response.results.map((page) => ({

@@ -1,5 +1,19 @@
 {% if loading %}
   <div class="dimmed light">{{ "LOADING" | translate | safe }}</div>
 {% else %}
-  <div></div>
+  <header class="space-between">
+    <span>{{ "TASKS" | translate }}</span>
+  </header>
+
+  <table class="small">
+    <tbody>
+      {% for task in tasks %}
+        <tr class="normal row">
+          <td class="align-left bright">
+            {{ task.name }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endif %}

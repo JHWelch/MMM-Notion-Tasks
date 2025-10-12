@@ -15,3 +15,22 @@ describe('loading', () => {
     expect(template).toContain('LOADING');
   });
 });
+
+describe('with task data', () => {
+  beforeEach(() => {
+    data = { loading: false, tasks: [
+      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
+      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+    ] };
+    template = nunjucks.render('MMM-Notion-Tasks.njk', data);
+  });
+
+  it('has title', () => {
+    expect(template).toContain('TASKS');
+  });
+
+  it('shows task list', () => {
+    expect(template).toContain('Task 1');
+    expect(template).toContain('Task 2');
+  });
+});

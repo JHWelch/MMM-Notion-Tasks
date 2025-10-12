@@ -1,4 +1,4 @@
-# MMM-CTA
+# MMM-Notion-Tasks
 
 WORK IN PROGRESS, NOT READY FOR USE
 

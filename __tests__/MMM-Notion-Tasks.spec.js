@@ -139,7 +139,7 @@ describe('socketNotificationReceived', () => {
     it('sets task data', () => {
       MMMNotionTasks.socketNotificationReceived('MMM-Notion-Tasks-DATA', payload);
 
-      expect(MMMNotionTasks.data).toBe(payload);
+      expect(MMMNotionTasks.data.tasks).toBe(payload.tasks);
     });
 
     it('updates dom', () => {

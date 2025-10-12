@@ -69,7 +69,7 @@ Module.register('MMM-Notion-Tasks', {
     }
 
     this.loading = false;
-    this.data = payload;
+    this.data.tasks = payload.tasks;
     this.updateDom(300);
   },
 });

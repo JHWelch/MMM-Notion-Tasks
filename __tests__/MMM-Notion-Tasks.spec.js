@@ -106,13 +106,24 @@ describe('getStyles', () => {
 });
 
 describe('socketNotificationReceived', () => {
-  const payload = {};
+  const payload = {
+    tasks: [
+      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
+      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+    ],
+  };
 
   describe('notification is MMM-Notion-Tasks-DATA', () => {
     it('sets loading to false', () => {
       MMMNotionTasks.socketNotificationReceived('MMM-Notion-Tasks-DATA', payload);
 
       expect(MMMNotionTasks.loading).toBe(false);
+    });
+
+    it('sets task data', () => {
+      MMMNotionTasks.socketNotificationReceived('MMM-Notion-Tasks-DATA', payload);
+
+      expect(MMMNotionTasks.data).toBe(payload);
     });
 
     it('updates dom', () => {

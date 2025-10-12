@@ -62,12 +62,13 @@ Module.register('MMM-Notion-Tasks', {
     };
   },
 
-  socketNotificationReceived (notification, _payload) {
+  socketNotificationReceived (notification, payload) {
     if (notification !== 'MMM-Notion-Tasks-DATA') {
       return;
     }
 
     this.loading = false;
+    this.data = payload;
     this.updateDom(300);
   },
 });

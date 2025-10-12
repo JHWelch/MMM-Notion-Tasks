@@ -28,7 +28,10 @@ Module.register('MMM-Notion-Tasks', {
   },
 
   getData () {
-    this.sendSocketNotification('MMM-Notion-Tasks-FETCH', {});
+    this.sendSocketNotification('MMM-Notion-Tasks-FETCH', {
+      notionToken: this.config.notionToken,
+      databaseId: this.config.databaseId,
+    });
   },
 
   getTemplate () {
@@ -38,6 +41,7 @@ Module.register('MMM-Notion-Tasks', {
   getTemplateData () {
     return {
       loading: this.loading,
+      tasks: this.data?.tasks || [],
     };
   },
 
@@ -59,12 +63,13 @@ Module.register('MMM-Notion-Tasks', {
     };
   },
 
-  socketNotificationReceived (notification, _payload) {
+  socketNotificationReceived (notification, payload) {
     if (notification !== 'MMM-Notion-Tasks-DATA') {
       return;
     }
 
     this.loading = false;
+    this.data.tasks = payload.tasks;
     this.updateDom(300);
   },
 });

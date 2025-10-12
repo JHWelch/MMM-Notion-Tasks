@@ -30,6 +30,8 @@ it('inits module in loading state', () => {
 describe('start', () => {
   const originalInterval = setInterval;
   const configObject = {
+    notionToken: 'secret-token',
+    databaseId: 'database-id',
   };
 
   beforeEach(() => {
@@ -82,6 +84,7 @@ describe('getTemplateData', () => {
   it('returns template data when loading', () => {
     expect(MMMNotionTasks.getTemplateData()).toEqual({
       loading: true,
+      tasks: [],
     });
   });
 
@@ -90,6 +93,21 @@ describe('getTemplateData', () => {
 
     expect(MMMNotionTasks.getTemplateData()).toEqual({
       loading: false,
+      tasks: [],
+    });
+  });
+
+  it('returns any stored task data', () => {
+    const data = { tasks: [
+      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
+      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+    ] };
+    MMMNotionTasks.loading = false;
+    MMMNotionTasks.data = data;
+
+    expect(MMMNotionTasks.getTemplateData()).toEqual({
+      loading: false,
+      tasks: data.tasks,
     });
   });
 });
@@ -104,13 +122,24 @@ describe('getStyles', () => {
 });
 
 describe('socketNotificationReceived', () => {
-  const payload = {};
+  const payload = {
+    tasks: [
+      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
+      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+    ],
+  };
 
   describe('notification is MMM-Notion-Tasks-DATA', () => {
     it('sets loading to false', () => {
       MMMNotionTasks.socketNotificationReceived('MMM-Notion-Tasks-DATA', payload);
 
       expect(MMMNotionTasks.loading).toBe(false);
+    });
+
+    it('sets task data', () => {
+      MMMNotionTasks.socketNotificationReceived('MMM-Notion-Tasks-DATA', payload);
+
+      expect(MMMNotionTasks.data.tasks).toBe(payload.tasks);
     });
 
     it('updates dom', () => {

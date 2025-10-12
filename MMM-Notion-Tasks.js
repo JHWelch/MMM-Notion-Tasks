@@ -41,6 +41,7 @@ Module.register('MMM-Notion-Tasks', {
   getTemplateData () {
     return {
       loading: this.loading,
+      tasks: this.data?.tasks || [],
     };
   },
 

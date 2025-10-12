@@ -1,0 +1,28 @@
+{
+  "name": "mmm-notion-tasks",
+  "version": "1.0.0",
+  "description": "A Magic Mirror Module to display tasks from a Notion Task database",
+  "keywords": [
+    "notion",
+    "tasks",
+    "todo",
+    "magic",
+    "mirror",
+    "mmm"
+  ],
+  "homepage": "https://github.com/JHWelch/MMM-Notion-Tasks#readme",
+  "bugs": {
+    "url": "https://github.com/JHWelch/MMM-Notion-Tasks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JHWelch/MMM-Notion-Tasks.git"
+  },
+  "license": "MIT",
+  "author": "Jordan Welch",
+  "type": "commonjs",
+  "main": "MMM-Notion-Tasks.js",
+  "scripts": {
+    "test": "jest"
+  }
+}

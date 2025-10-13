@@ -2,7 +2,7 @@
 
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
 
-This module displays a [Notion Task Database](https://www.notion.com/help/sprints#create-a-task-database).
+This module displays a [Notion Task Database](https://www.notion.com/help/guides/give-your-to-dos-a-home-with-task-databases).
 
 ![Screenshot](screenshot.png)
 
@@ -61,17 +61,23 @@ var config = {
 }
 ```
 
-| Option           | Required?    | Description                                                                             |
-| ---------------- | ------------ | --------------------------------------------------------------------------------------- |
-| `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                                   |
-| `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                                   |
-| `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)                  |
-| `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                                 |
-| `dueDateField`   | *Optional*   | Update name of "Due date" field. <br>Default `Due date`                                 |
-| `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                         |
-| `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                                     |
-| `doneStatuses`   | *Optional*   | Array of Statuses that mark a task "Done". Filtered from board. <br> Default `["Done"]` |
-| `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initials`        |
+### Customizing Config
+
+| Option           | Required?    | Description                                                                            |
+| ---------------- | ------------ | -------------------------------------------------------------------------------------- |
+| `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                                  |
+| `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                                  |
+| `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)                 |
+| `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                                |
+| `dueDateField`   | *Optional*   | Update name of "Due date" field. <br>Default `Due date`                                |
+| `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                        |
+| `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                                    |
+| `doneStatuses`   | *Optional*   | Array of Statuses that mark a task "Done". Filtered from list. <br> Default `["Done"]` |
+| `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initials`       |
+
+Notion [task databases require](https://www.notion.com/help/guides/give-your-to-dos-a-home-with-task-databases) `Status`, `Assignee`, and `Due date` fields. However, the name of these fields can be customized. For this module to work, if you are not using the default names for these fields you will need to customize the corresponding field option.
+
+`doneStatuses` must include all "Complete" statuses from your task database. They are filtered from the task list.
 
 ## Development
 

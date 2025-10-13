@@ -30,7 +30,7 @@ Module.register('MMM-Notion-Tasks', {
   getData () {
     this.sendSocketNotification('MMM-Notion-Tasks-FETCH', {
       notionToken: this.config.notionToken,
-      databaseId: this.config.databaseId,
+      dataSourceId: this.config.dataSourceId,
     });
   },
 

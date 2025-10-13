@@ -20,12 +20,12 @@ module.exports = NodeHelper.create({
 
   async getData ({
     notionToken,
-    databaseId,
+    dataSourceId,
   }) {
     const notion = new Client({ auth: notionToken });
 
     const response = await notion.dataSources.query({
-      data_source_id: databaseId,
+      data_source_id: dataSourceId,
       filter: {
         and: [
           {

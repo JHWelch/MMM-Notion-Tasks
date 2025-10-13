@@ -4,6 +4,8 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 This module displays a [Notion Task Database](https://www.notion.com/help/sprints#create-a-task-database).
 
+![Screenshot](screenshot.png)
+
 ## Installation
 
 In ~/MagicMirror/modules

@@ -19,6 +19,7 @@ it('has a default config', () => {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
+    nameFormat: 'full',
   });
 });
 
@@ -77,6 +78,13 @@ describe('start', () => {
 
     expect(global.setInterval)
       .toHaveBeenCalledWith(expect.any(Function), 100000);
+  });
+
+  it('registers nunjucks filters', () => {
+    MMMNotionTasks.start();
+
+    expect(MMMNotionTasks._nunjucksEnvironment.addFilter)
+      .toHaveBeenCalledWith('name', expect.any(Function));
   });
 });
 
@@ -180,6 +188,68 @@ describe('socketNotificationReceived', () => {
       MMMNotionTasks.socketNotificationReceived('NOT-MMM-Notion-Tasks-DATA', payload);
 
       expect(MMMNotionTasks.data.stops).toEqual(undefined);
+    });
+  });
+});
+
+describe('addFilters', () => {
+  describe('name filter', () => {
+    const getFilter = () => MMMNotionTasks.nunjucksEnvironment()
+      .addFilter.mock.calls
+      .find((call) => call[0] === 'name')[1];
+
+    it('registers a name filter', () => {
+      MMMNotionTasks.addFilters();
+
+      expect(MMMNotionTasks.nunjucksEnvironment().addFilter)
+        .toHaveBeenCalledWith('name', expect.any(Function));
+    });
+
+    it('name filter returns name', () => {
+      MMMNotionTasks.addFilters();
+      const nameFilter = getFilter();
+
+      expect(nameFilter('Jordan Welch')).toBe('Jordan Welch');
+    });
+
+    describe('config set to first name', () => {
+      it('name filter returns first name', () => {
+        MMMNotionTasks.config.nameFormat = 'first';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Jordan');
+      });
+    });
+
+    describe('config set to last name', () => {
+      it('name filter returns last name', () => {
+        MMMNotionTasks.config.nameFormat = 'last';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Welch');
+      });
+    });
+
+    describe('config set to initials', () => {
+      it('name filter returns initials', () => {
+        MMMNotionTasks.config.nameFormat = 'initials';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('JW');
+      });
+    });
+
+    describe('config set to full name', () => {
+      it('name filter returns full name', () => {
+        MMMNotionTasks.config.nameFormat = 'full';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Jordan Welch');
+      });
     });
   });
 });

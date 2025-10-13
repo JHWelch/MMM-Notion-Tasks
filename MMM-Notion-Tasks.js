@@ -13,6 +13,7 @@ Module.register('MMM-Notion-Tasks', {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
+    nameFormat: 'full',
   },
 
   requiresVersion: '2.28.0',
@@ -23,6 +24,7 @@ Module.register('MMM-Notion-Tasks', {
     Log.info(`Starting module: ${this.name}`);
     const self = this;
 
+    this.addFilters();
     this.getData();
 
     setInterval(() => {
@@ -77,5 +79,21 @@ Module.register('MMM-Notion-Tasks', {
     this.loading = false;
     this.data.tasks = payload.tasks;
     this.updateDom(300);
+  },
+
+  addFilters () {
+    this.nunjucksEnvironment().addFilter('name', (name) => {
+      switch (this.config.nameFormat) {
+      case 'first':
+        return name.split(' ')[0];
+      case 'last':
+        return name.split(' ').slice(-1).join(' ');
+      case 'initials':
+        return name.split(' ').map((n) => n[0]).join('');
+      case 'full':
+      default:
+        return name;
+      }
+    });
   },
 });

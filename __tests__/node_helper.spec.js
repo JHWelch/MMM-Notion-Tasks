@@ -48,7 +48,7 @@ describe('socketNotificationReceived', () => {
     it('fetches tasks from Notion', async () => {
       await helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
         notionToken: 'secret-token',
-        databaseId: 'database-id',
+        dataSourceId: 'data-source-id',
       });
 
       expect(helper.sendSocketNotification).toHaveBeenCalledWith('MMM-Notion-Tasks-DATA', {tasks: [
@@ -60,11 +60,11 @@ describe('socketNotificationReceived', () => {
     it('calls notion with correct parameters', () => {
       helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
         notionToken: 'secret-token',
-        databaseId: 'database-id',
+        dataSourceId: 'data-source-id',
       });
 
       expect(query).toHaveBeenCalledWith({
-        data_source_id: 'database-id',
+        data_source_id: 'data-source-id',
         filter: {
           and: [
             {

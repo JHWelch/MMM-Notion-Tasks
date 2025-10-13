@@ -31,7 +31,7 @@ describe('start', () => {
   const originalInterval = setInterval;
   const configObject = {
     notionToken: 'secret-token',
-    databaseId: 'database-id',
+    dataSourceId: 'data-source-id',
   };
 
   beforeEach(() => {

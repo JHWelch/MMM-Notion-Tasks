@@ -61,16 +61,17 @@ var config = {
 }
 ```
 
-| Option           | Required?    | Description                                                                      |
-| ---------------- | ------------ | -------------------------------------------------------------------------------- |
-| `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                            |
-| `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                            |
-| `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)           |
-| `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                          |
-| `dueDateField`   | *Optional*   | Update name of "Due Date" field. <br>Default `Due Date`                          |
-| `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                  |
-| `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                              |
-| `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initials` |
+| Option           | Required?    | Description                                                                             |
+| ---------------- | ------------ | --------------------------------------------------------------------------------------- |
+| `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                                   |
+| `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                                   |
+| `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)                  |
+| `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                                 |
+| `dueDateField`   | *Optional*   | Update name of "Due Date" field. <br>Default `Due Date`                                 |
+| `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                         |
+| `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                                     |
+| `doneStatuses`   | *Optional*   | Array of Statuses that mark a task "Done". Filtered from board. <br> Default `["Done"]` |
+| `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initials`        |
 
 ## Development
 

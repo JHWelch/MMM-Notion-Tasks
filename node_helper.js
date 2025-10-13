@@ -53,11 +53,13 @@ module.exports = NodeHelper.create({
       ],
     });
 
+    const today = (new Date()).toISOString().split('T')[0];
     const tasks = response.results.map((page) => ({
       id: page.id,
       name: page.properties[nameField].title[0]?.text.content || '-',
       status: page.properties[statusField].select?.name || '-',
       assignee: page.properties[assigneeField].people[0]?.name || '-',
+      isPastDue: page.properties['Due Date'].date?.start < today,
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });

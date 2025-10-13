@@ -67,7 +67,7 @@ var config = {
 | `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                                   |
 | `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)                  |
 | `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                                 |
-| `dueDateField`   | *Optional*   | Update name of "Due Date" field. <br>Default `Due Date`                                 |
+| `dueDateField`   | *Optional*   | Update name of "Due date" field. <br>Default `Due date`                                 |
 | `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                         |
 | `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                                     |
 | `doneStatuses`   | *Optional*   | Array of Statuses that mark a task "Done". Filtered from board. <br> Default `["Done"]` |

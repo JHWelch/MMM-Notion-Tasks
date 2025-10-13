@@ -24,7 +24,7 @@ describe('socketNotificationReceived', () => {
         notionToken: 'secret-token',
         dataSourceId: 'data-source-id',
         assigneeField: 'Assignee',
-        dueDateField: 'Due Date',
+        dueDateField: 'Due date',
         nameField: 'Name',
         statusField: 'Status',
         doneStatuses: ['Done'],
@@ -45,7 +45,7 @@ describe('socketNotificationReceived', () => {
               Name: { title: [{ text: { content: 'Task 1' } }] },
               Status: { select: { name: 'In Progress' } },
               Assignee: { people: [{ name: 'User 1' }] },
-              'Due Date': { date: { start: '2023-09-30' } },
+              'Due date': { date: { start: '2023-09-30' } },
             },
           },
           {
@@ -55,7 +55,7 @@ describe('socketNotificationReceived', () => {
               Name: { title: [{ text: { content: 'Task 2' } }] },
               Status: { select: { name: 'Not started' } },
               Assignee: { people: [{ name: 'User 2' }] },
-              'Due Date': { date: { start: '2023-10-01' } },
+              'Due date': { date: { start: '2023-10-01' } },
             },
           },
         ] }));
@@ -94,7 +94,7 @@ describe('socketNotificationReceived', () => {
                 status: { does_not_equal: 'Done' },
               },
               {
-                property: 'Due Date',
+                property: 'Due date',
                 date: {
                   on_or_before: (new Date()).toISOString().split('T')[0],
                 },
@@ -103,7 +103,7 @@ describe('socketNotificationReceived', () => {
           },
           sorts: [
             {
-              property: 'Due Date',
+              property: 'Due date',
               direction: 'ascending',
             },
           ],

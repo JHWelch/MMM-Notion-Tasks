@@ -11,7 +11,7 @@ Module.register('MMM-Notion-Tasks', {
   defaults: {
     updateInterval: 60000,
     assigneeField: 'Assignee',
-    dueDateField: 'Due date',
+    dueDateField: 'Due',
     nameField: 'Name',
     statusField: 'Status',
     doneStatuses: ['Done'],
@@ -47,7 +47,7 @@ Module.register('MMM-Notion-Tasks', {
   },
 
   getTemplate () {
-    return 'templates/MMM-Notion-Tasks.njk';
+    return 'MMM-Notion-Tasks.njk';
   },
 
   getTemplateData () {
@@ -55,10 +55,6 @@ Module.register('MMM-Notion-Tasks', {
       loading: this.loading,
       tasks: this.data?.tasks || [],
     };
-  },
-
-  getScripts () {
-    return [];
   },
 
   getStyles () {

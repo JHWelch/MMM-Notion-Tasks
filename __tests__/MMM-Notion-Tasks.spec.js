@@ -17,7 +17,7 @@ it('has a default config', () => {
   expect(MMMNotionTasks.defaults).toEqual({
     updateInterval: 60000,
     assigneeField: 'Assignee',
-    dueDateField: 'Due date',
+    dueDateField: 'Due',
     nameField: 'Name',
     statusField: 'Status',
     doneStatuses: ['Done'],
@@ -39,7 +39,7 @@ describe('start', () => {
     notionToken: 'secret-token',
     dataSourceId: 'data-source-id',
     assigneeField: 'Assignee',
-    dueDateField: 'Due date',
+    dueDateField: 'Due',
     nameField: 'Name',
     statusField: 'Status',
     doneStatuses: ['Done'],
@@ -94,7 +94,7 @@ describe('start', () => {
 
 describe('getTemplate', () => {
   it('returns template path', () => {
-    expect(MMMNotionTasks.getTemplate()).toBe('templates/MMM-Notion-Tasks.njk');
+    expect(MMMNotionTasks.getTemplate()).toBe('MMM-Notion-Tasks.njk');
   });
 });
 

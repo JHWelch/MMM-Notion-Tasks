@@ -16,10 +16,6 @@ git clone https://github.com/JHWelch/MMM-Notion-Tasks.git
 npm install --omit=dev
 ```
 
-## Inspiration
-
-This project takes some inspiration from [SyncTasks](https://www.synctasks.app/) on iOS, which is a great companion to this.
-
 ## Obtaining Notion Secrets
 
 ### Notion API Key
@@ -70,3 +66,35 @@ var config = {
 | `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                  |
 | `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                  |
 | `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute) |
+
+## Development
+
+Install dev dependencies
+
+```sh
+npm install
+```
+
+### Testing
+
+There is a test suite using Jest.
+
+```sh
+npm test
+```
+
+### Linting
+
+There is linting using ESLint
+
+```sh
+# Run linting
+npm run lint
+
+# Fix linting errors
+npm run fix
+```
+
+## Inspiration
+
+This project takes some inspiration from [SyncTasks](https://www.synctasks.app/) on iOS, which is a great companion to this.

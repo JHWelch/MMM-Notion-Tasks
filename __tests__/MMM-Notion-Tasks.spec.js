@@ -94,7 +94,7 @@ describe('start', () => {
 
 describe('getTemplate', () => {
   it('returns template path', () => {
-    expect(MMMNotionTasks.getTemplate()).toBe('templates/MMM-Notion-Tasks.njk');
+    expect(MMMNotionTasks.getTemplate()).toBe('MMM-Notion-Tasks.njk');
   });
 });
 

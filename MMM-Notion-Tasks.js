@@ -10,6 +10,9 @@
 Module.register('MMM-Notion-Tasks', {
   defaults: {
     updateInterval: 60000,
+    nameField: 'Name',
+    statusField: 'Status',
+    assigneeField: 'Assignee',
   },
 
   requiresVersion: '2.28.0',
@@ -31,6 +34,9 @@ Module.register('MMM-Notion-Tasks', {
     this.sendSocketNotification('MMM-Notion-Tasks-FETCH', {
       notionToken: this.config.notionToken,
       dataSourceId: this.config.dataSourceId,
+      nameField: this.config.nameField,
+      statusField: this.config.statusField,
+      assigneeField: this.config.assigneeField,
     });
   },
 

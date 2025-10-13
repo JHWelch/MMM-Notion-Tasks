@@ -16,6 +16,9 @@ beforeEach(() => {
 it('has a default config', () => {
   expect(MMMNotionTasks.defaults).toEqual({
     updateInterval: 60000,
+    nameField: 'Name',
+    statusField: 'Status',
+    assigneeField: 'Assignee',
   });
 });
 
@@ -32,6 +35,9 @@ describe('start', () => {
   const configObject = {
     notionToken: 'secret-token',
     dataSourceId: 'data-source-id',
+    nameField: 'Name',
+    statusField: 'Status',
+    assigneeField: 'Assignee',
   };
 
   beforeEach(() => {

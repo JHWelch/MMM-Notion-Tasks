@@ -14,6 +14,7 @@ Module.register('MMM-Notion-Tasks', {
     dueDateField: 'Due Date',
     nameField: 'Name',
     statusField: 'Status',
+    doneStatuses: ['Done'],
     nameFormat: 'full',
   },
 
@@ -41,6 +42,7 @@ Module.register('MMM-Notion-Tasks', {
       dueDateField: this.config.dueDateField,
       nameField: this.config.nameField,
       statusField: this.config.statusField,
+      doneStatuses: this.config.doneStatuses,
     });
   },
 

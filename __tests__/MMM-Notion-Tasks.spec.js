@@ -20,6 +20,7 @@ it('has a default config', () => {
     dueDateField: 'Due Date',
     nameField: 'Name',
     statusField: 'Status',
+    doneStatuses: ['Done'],
     nameFormat: 'full',
   });
 });
@@ -41,6 +42,7 @@ describe('start', () => {
     dueDateField: 'Due Date',
     nameField: 'Name',
     statusField: 'Status',
+    doneStatuses: ['Done'],
   };
 
   beforeEach(() => {

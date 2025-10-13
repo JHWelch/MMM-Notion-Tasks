@@ -24,7 +24,8 @@ describe('socketNotificationReceived', () => {
       Client.mockImplementation(() => ({
         dataSources: { query },
       }));
-
+      const date = new Date(2023, 9, 1); // October 1, 2023
+      jest.useFakeTimers().setSystemTime(date);
       query.mockImplementation(() => Promise.resolve({ results: [
         {
           object: 'page',
@@ -33,6 +34,7 @@ describe('socketNotificationReceived', () => {
             Name: { title: [{ text: { content: 'Task 1' } }] },
             Status: { select: { name: 'In Progress' } },
             Assignee: { people: [{ name: 'User 1' }] },
+            'Due Date': { date: { start: '2023-09-30' } },
           },
         },
         {
@@ -42,6 +44,7 @@ describe('socketNotificationReceived', () => {
             Name: { title: [{ text: { content: 'Task 2' } }] },
             Status: { select: { name: 'Not started' } },
             Assignee: { people: [{ name: 'User 2' }] },
+            'Due Date': { date: { start: '2023-10-01' } },
           },
         },
       ] }));
@@ -62,12 +65,14 @@ describe('socketNotificationReceived', () => {
           name: 'Task 1',
           status: 'In Progress',
           assignee: 'User 1',
+          isPastDue: true,
         },
         {
           id: 'page-id-2',
           name: 'Task 2',
           status: 'Not started',
           assignee: 'User 2',
+          isPastDue: false,
         },
       ]});
     });

@@ -21,6 +21,9 @@ module.exports = NodeHelper.create({
   async getData ({
     notionToken,
     dataSourceId,
+    nameField,
+    statusField,
+    assigneeField,
   }) {
     const notion = new Client({ auth: notionToken });
 
@@ -52,8 +55,9 @@ module.exports = NodeHelper.create({
 
     const tasks = response.results.map((page) => ({
       id: page.id,
-      name: page.properties.Name.title[0]?.text.content || 'No Name',
-      status: page.properties.Status.select?.name || 'No Status',
+      name: page.properties[nameField].title[0]?.text.content || 'No Name',
+      status: page.properties[statusField].select?.name || 'No Status',
+      assignee: page.properties[assigneeField].people[0]?.name || 'Unassigned',
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });

@@ -16,6 +16,9 @@ beforeEach(() => {
 it('has a default config', () => {
   expect(MMMNotionTasks.defaults).toEqual({
     updateInterval: 60000,
+    nameField: 'Name',
+    statusField: 'Status',
+    assigneeField: 'Assignee',
   });
 });
 
@@ -32,6 +35,9 @@ describe('start', () => {
   const configObject = {
     notionToken: 'secret-token',
     dataSourceId: 'data-source-id',
+    nameField: 'Name',
+    statusField: 'Status',
+    assigneeField: 'Assignee',
   };
 
   beforeEach(() => {
@@ -99,8 +105,18 @@ describe('getTemplateData', () => {
 
   it('returns any stored task data', () => {
     const data = { tasks: [
-      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
-      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+      {
+        id: 'page-id',
+        name: 'Task 1',
+        status: 'In Progress',
+        assignee: 'User 1',
+      },
+      {
+        id: 'page-id-2',
+        name: 'Task 2',
+        status: 'Not started',
+        assignee: 'User 2',
+      },
     ] };
     MMMNotionTasks.loading = false;
     MMMNotionTasks.data = data;
@@ -124,8 +140,18 @@ describe('getStyles', () => {
 describe('socketNotificationReceived', () => {
   const payload = {
     tasks: [
-      { id: 'page-id', name: 'Task 1', status: 'In Progress' },
-      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+      {
+        id: 'page-id',
+        name: 'Task 1',
+        status: 'In Progress',
+        assignee: 'User 1',
+      },
+      {
+        id: 'page-id-2',
+        name: 'Task 2',
+        status: 'Not started',
+        assignee: 'User 2',
+      },
     ],
   };
 

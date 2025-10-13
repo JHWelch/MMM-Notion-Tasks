@@ -32,6 +32,7 @@ describe('socketNotificationReceived', () => {
           properties: {
             Name: { title: [{ text: { content: 'Task 1' } }] },
             Status: { select: { name: 'In Progress' } },
+            Assignee: { people: [{ name: 'User 1' }] },
           },
         },
         {
@@ -39,7 +40,8 @@ describe('socketNotificationReceived', () => {
           id: 'page-id-2',
           properties: {
             Name: { title: [{ text: { content: 'Task 2' } }] },
-            Status: { select: { name: 'Completed' } },
+            Status: { select: { name: 'Not started' } },
+            Assignee: { people: [{ name: 'User 2' }] },
           },
         },
       ] }));
@@ -49,11 +51,24 @@ describe('socketNotificationReceived', () => {
       await helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
         notionToken: 'secret-token',
         dataSourceId: 'data-source-id',
+        nameField: 'Name',
+        statusField: 'Status',
+        assigneeField: 'Assignee',
       });
 
       expect(helper.sendSocketNotification).toHaveBeenCalledWith('MMM-Notion-Tasks-DATA', {tasks: [
-        { id: 'page-id', name: 'Task 1', status: 'In Progress' },
-        { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+        {
+          id: 'page-id',
+          name: 'Task 1',
+          status: 'In Progress',
+          assignee: 'User 1',
+        },
+        {
+          id: 'page-id-2',
+          name: 'Task 2',
+          status: 'Not started',
+          assignee: 'User 2',
+        },
       ]});
     });
 
@@ -61,6 +76,9 @@ describe('socketNotificationReceived', () => {
       helper.socketNotificationReceived('MMM-Notion-Tasks-FETCH', {
         notionToken: 'secret-token',
         dataSourceId: 'data-source-id',
+        nameField: 'Name',
+        statusField: 'Status',
+        assigneeField: 'Assignee',
       });
 
       expect(query).toHaveBeenCalledWith({

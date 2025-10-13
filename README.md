@@ -4,6 +4,8 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 This module displays a [Notion Task Database](https://www.notion.com/help/sprints#create-a-task-database).
 
+![Screenshot](screenshot.png)
+
 ## Installation
 
 In ~/MagicMirror/modules
@@ -64,6 +66,9 @@ var config = {
 | `notionToken`    | **Required** | See [Notion API Key](#notion-api-key)                                  |
 | `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                  |
 | `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute) |
+| `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                        |
+| `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                    |
+| `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                |
 
 ## Development
 

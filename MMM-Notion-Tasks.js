@@ -57,10 +57,6 @@ Module.register('MMM-Notion-Tasks', {
     };
   },
 
-  getScripts () {
-    return [];
-  },
-
   getStyles () {
     return [
       'font-awesome.css',

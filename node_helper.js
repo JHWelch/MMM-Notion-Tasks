@@ -21,9 +21,10 @@ module.exports = NodeHelper.create({
   async getData ({
     notionToken,
     dataSourceId,
+    assigneeField,
+    dueDateField,
     nameField,
     statusField,
-    assigneeField,
   }) {
     const notion = new Client({ auth: notionToken });
 
@@ -32,13 +33,13 @@ module.exports = NodeHelper.create({
       filter: {
         and: [
           {
-            property: 'Status',
+            property: statusField,
             status: {
               does_not_equal: 'Done',
             },
           },
           {
-            property: 'Due Date',
+            property: dueDateField,
             date: {
               on_or_before: (new Date()).toISOString().split('T')[0],
             },
@@ -47,7 +48,7 @@ module.exports = NodeHelper.create({
       },
       sorts: [
         {
-          property: 'Due Date',
+          property: dueDateField,
           direction: 'ascending',
         },
       ],
@@ -59,7 +60,7 @@ module.exports = NodeHelper.create({
       name: page.properties[nameField].title[0]?.text.content || '-',
       status: page.properties[statusField].select?.name || '-',
       assignee: page.properties[assigneeField].people[0]?.name || '-',
-      isPastDue: page.properties['Due Date'].date?.start < today,
+      isPastDue: page.properties[dueDateField].date?.start < today,
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });

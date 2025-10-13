@@ -47,7 +47,7 @@ Module.register('MMM-Notion-Tasks', {
   },
 
   getTemplate () {
-    return 'templates/MMM-Notion-Tasks.njk';
+    return 'MMM-Notion-Tasks.njk';
   },
 
   getTemplateData () {

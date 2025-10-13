@@ -20,7 +20,7 @@ describe('with task data', () => {
   beforeEach(() => {
     data = { loading: false, tasks: [
       { id: 'page-id', name: 'Task 1', status: 'In Progress' },
-      { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+      { id: 'page-id-2', name: 'Task 2', status: 'Not started' },
     ] };
     template = nunjucks.render('MMM-Notion-Tasks.njk', data);
   });

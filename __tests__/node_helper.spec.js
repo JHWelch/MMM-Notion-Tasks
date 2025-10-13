@@ -40,7 +40,7 @@ describe('socketNotificationReceived', () => {
           id: 'page-id-2',
           properties: {
             Name: { title: [{ text: { content: 'Task 2' } }] },
-            Status: { select: { name: 'Completed' } },
+            Status: { select: { name: 'Not started' } },
             Assignee: { people: [{ name: 'User 2' }] },
           },
         },
@@ -63,7 +63,7 @@ describe('socketNotificationReceived', () => {
         {
           id: 'page-id-2',
           name: 'Task 2',
-          status: 'Completed',
+          status: 'Not started',
           assignee: 'User 2',
         },
       ]});

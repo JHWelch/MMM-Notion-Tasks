@@ -10,9 +10,11 @@
 Module.register('MMM-Notion-Tasks', {
   defaults: {
     updateInterval: 60000,
+    assigneeField: 'Assignee',
+    dueDateField: 'Due date',
     nameField: 'Name',
     statusField: 'Status',
-    assigneeField: 'Assignee',
+    doneStatuses: ['Done'],
     nameFormat: 'full',
   },
 
@@ -36,9 +38,11 @@ Module.register('MMM-Notion-Tasks', {
     this.sendSocketNotification('MMM-Notion-Tasks-FETCH', {
       notionToken: this.config.notionToken,
       dataSourceId: this.config.dataSourceId,
+      assigneeField: this.config.assigneeField,
+      dueDateField: this.config.dueDateField,
       nameField: this.config.nameField,
       statusField: this.config.statusField,
-      assigneeField: this.config.assigneeField,
+      doneStatuses: this.config.doneStatuses,
     });
   },
 

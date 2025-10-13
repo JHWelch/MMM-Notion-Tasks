@@ -25,6 +25,7 @@ module.exports = NodeHelper.create({
     dueDateField,
     nameField,
     statusField,
+    doneStatuses,
   }) {
     const notion = new Client({ auth: notionToken });
 
@@ -32,12 +33,10 @@ module.exports = NodeHelper.create({
       data_source_id: dataSourceId,
       filter: {
         and: [
-          {
+          ...doneStatuses.map((doneStatus) => ({
             property: statusField,
-            status: {
-              does_not_equal: 'Done',
-            },
-          },
+            status: { does_not_equal: doneStatus },
+          })),
           {
             property: dueDateField,
             date: {

@@ -27,6 +27,7 @@ describe('socketNotificationReceived', () => {
         dueDateField: 'Due Date',
         nameField: 'Name',
         statusField: 'Status',
+        doneStatuses: ['Done'],
       };
 
       beforeEach(() => {
@@ -90,9 +91,7 @@ describe('socketNotificationReceived', () => {
             and: [
               {
                 property: 'Status',
-                status: {
-                  does_not_equal: 'Done',
-                },
+                status: { does_not_equal: 'Done' },
               },
               {
                 property: 'Due Date',
@@ -120,6 +119,7 @@ describe('socketNotificationReceived', () => {
         dueDateField: 'CustomDueDateField',
         nameField: 'CustomNameField',
         statusField: 'CustomStatusField',
+        doneStatuses: ['Deployed', 'Canceled'],
       };
 
       beforeEach(() => {
@@ -183,9 +183,11 @@ describe('socketNotificationReceived', () => {
             and: [
               {
                 property: 'CustomStatusField',
-                status: {
-                  does_not_equal: 'Done',
-                },
+                status: { does_not_equal: 'Deployed' },
+              },
+              {
+                property: 'CustomStatusField',
+                status: { does_not_equal: 'Canceled' },
               },
               {
                 property: 'CustomDueDateField',

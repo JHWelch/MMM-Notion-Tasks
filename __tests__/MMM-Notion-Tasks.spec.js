@@ -19,6 +19,7 @@ it('has a default config', () => {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
+    nameType: 'full',
   });
 });
 

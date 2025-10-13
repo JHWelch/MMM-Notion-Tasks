@@ -13,6 +13,7 @@ Module.register('MMM-Notion-Tasks', {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
+    nameType: 'full',
   },
 
   requiresVersion: '2.28.0',

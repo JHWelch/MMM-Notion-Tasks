@@ -78,6 +78,13 @@ describe('start', () => {
     expect(global.setInterval)
       .toHaveBeenCalledWith(expect.any(Function), 100000);
   });
+
+  it('registers nunjucks filters', () => {
+    MMMNotionTasks.start();
+
+    expect(MMMNotionTasks._nunjucksEnvironment.addFilter)
+      .toHaveBeenCalledWith('name', expect.any(Function));
+  });
 });
 
 describe('getTemplate', () => {

@@ -23,6 +23,7 @@ Module.register('MMM-Notion-Tasks', {
     Log.info(`Starting module: ${this.name}`);
     const self = this;
 
+    this.addFilters();
     this.getData();
 
     setInterval(() => {
@@ -77,5 +78,9 @@ Module.register('MMM-Notion-Tasks', {
     this.loading = false;
     this.data.tasks = payload.tasks;
     this.updateDom(300);
+  },
+
+  addFilters () {
+    this.nunjucksEnvironment().addFilter('name', (name) => name);
   },
 });

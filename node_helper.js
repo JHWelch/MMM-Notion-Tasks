@@ -54,6 +54,7 @@ module.exports = NodeHelper.create({
       id: page.id,
       name: page.properties.Name.title[0]?.text.content || 'No Name',
       status: page.properties.Status.select?.name || 'No Status',
+      assignee: page.properties.Assignee.people[0]?.name || 'Unassigned',
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });

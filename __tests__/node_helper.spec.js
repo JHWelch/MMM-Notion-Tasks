@@ -32,6 +32,7 @@ describe('socketNotificationReceived', () => {
           properties: {
             Name: { title: [{ text: { content: 'Task 1' } }] },
             Status: { select: { name: 'In Progress' } },
+            Assignee: { people: [{ name: 'User 1' }] },
           },
         },
         {
@@ -40,6 +41,7 @@ describe('socketNotificationReceived', () => {
           properties: {
             Name: { title: [{ text: { content: 'Task 2' } }] },
             Status: { select: { name: 'Completed' } },
+            Assignee: { people: [{ name: 'User 2' }] },
           },
         },
       ] }));
@@ -52,8 +54,18 @@ describe('socketNotificationReceived', () => {
       });
 
       expect(helper.sendSocketNotification).toHaveBeenCalledWith('MMM-Notion-Tasks-DATA', {tasks: [
-        { id: 'page-id', name: 'Task 1', status: 'In Progress' },
-        { id: 'page-id-2', name: 'Task 2', status: 'Completed' },
+        {
+          id: 'page-id',
+          name: 'Task 1',
+          status: 'In Progress',
+          assignee: 'User 1',
+        },
+        {
+          id: 'page-id-2',
+          name: 'Task 2',
+          status: 'Completed',
+          assignee: 'User 2',
+        },
       ]});
     });
 

@@ -55,9 +55,9 @@ module.exports = NodeHelper.create({
 
     const tasks = response.results.map((page) => ({
       id: page.id,
-      name: page.properties[nameField].title[0]?.text.content || 'No Name',
-      status: page.properties[statusField].select?.name || 'No Status',
-      assignee: page.properties[assigneeField].people[0]?.name || 'Unassigned',
+      name: page.properties[nameField].title[0]?.text.content || '-',
+      status: page.properties[statusField].select?.name || '-',
+      assignee: page.properties[assigneeField].people[0]?.name || '-',
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });

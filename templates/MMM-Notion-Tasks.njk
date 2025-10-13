@@ -9,6 +9,11 @@
     <tbody>
       {% for task in tasks %}
         <tr class="normal row">
+          <td class="align-center">
+            {% if task.isPastDue %}
+              <i class="fa fa-sm fa-exclamation-circle" style="color: #ffc2c2;"></i>
+            {% endif %}
+          </td>
           <td class="align-left bright">
             {{ task.name }}
           </td>

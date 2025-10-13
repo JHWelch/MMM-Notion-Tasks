@@ -118,12 +118,14 @@ describe('getTemplateData', () => {
         name: 'Task 1',
         status: 'In Progress',
         assignee: 'User 1',
+        isPastDue: true,
       },
       {
         id: 'page-id-2',
         name: 'Task 2',
         status: 'Not started',
         assignee: 'User 2',
+        isPastDue: false,
       },
     ] };
     MMMNotionTasks.loading = false;
@@ -153,12 +155,14 @@ describe('socketNotificationReceived', () => {
         name: 'Task 1',
         status: 'In Progress',
         assignee: 'User 1',
+        isPastDue: true,
       },
       {
         id: 'page-id-2',
         name: 'Task 2',
         status: 'Not started',
         assignee: 'User 2',
+        isPastDue: false,
       },
     ],
   };

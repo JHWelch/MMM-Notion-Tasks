@@ -24,12 +24,14 @@ describe('with task data', () => {
         name: 'Task 1',
         status: 'In Progress',
         assignee: 'User 1',
+        isPastDue: false,
       },
       {
         id: 'page-id-2',
         name: 'Task 2',
         status: 'Not started',
         assignee: 'User 2',
+        isPastDue: false,
       },
     ] };
     template = nunjucks.render('MMM-Notion-Tasks.njk', data);
@@ -44,5 +46,39 @@ describe('with task data', () => {
     expect(template).toContain('Task 2');
     expect(template).toContain('User 1');
     expect(template).toContain('User 2');
+  });
+});
+
+describe('no past due task', () => {
+  beforeEach(() => {
+    data = { loading: false, tasks: [{
+      id: 'page-id',
+      name: 'Task 1',
+      status: 'In Progress',
+      assignee: 'User 1',
+      isPastDue: false,
+    }] };
+    template = nunjucks.render('MMM-Notion-Tasks.njk', data);
+  });
+
+  it('does not show icon', () => {
+    expect(template).not.toContain('fa-exclamation-circle');
+  });
+});
+
+describe('past due task', () => {
+  beforeEach(() => {
+    data = { loading: false, tasks: [{
+      id: 'page-id',
+      name: 'Task 1',
+      status: 'In Progress',
+      assignee: 'User 1',
+      isPastDue: true,
+    }] };
+    template = nunjucks.render('MMM-Notion-Tasks.njk', data);
+  });
+
+  it('shows icon', () => {
+    expect(template).toContain('fa-exclamation-circle');
   });
 });

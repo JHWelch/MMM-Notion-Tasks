@@ -11,7 +11,7 @@ Module.register('MMM-Notion-Tasks', {
   defaults: {
     updateInterval: 60000,
     assigneeField: 'Assignee',
-    dueDateField: 'Due date',
+    dueDateField: 'Due',
     nameField: 'Name',
     statusField: 'Status',
     doneStatuses: ['Done'],

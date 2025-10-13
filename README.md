@@ -69,13 +69,13 @@ var config = {
 | `dataSourceId`   | **Required** | See [Data Source Id](#data-source-id)                                                  |
 | `updateInterval` | *Optional*   | Refresh time in milliseconds <br>Default 60000 milliseconds (1 minute)                 |
 | `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                                |
-| `dueDateField`   | *Optional*   | Update name of "Due date" field. <br>Default `Due date`                                |
+| `dueDateField`   | *Optional*   | Update name of "Due" field. <br>Default `Due`                                          |
 | `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                        |
 | `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                                    |
 | `doneStatuses`   | *Optional*   | Array of Statuses that mark a task "Done". Filtered from list. <br> Default `["Done"]` |
 | `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initials`       |
 
-Notion [task databases require](https://www.notion.com/help/guides/give-your-to-dos-a-home-with-task-databases) `Status`, `Assignee`, and `Due date` fields. However, the name of these fields can be customized. For this module to work, if you are not using the default names for these fields you will need to customize the corresponding field option.
+Notion [task databases require](https://www.notion.com/help/guides/give-your-to-dos-a-home-with-task-databases) `Status`, `Assignee`, and `Due` fields. However, the name of these fields can be customized. For this module to work, if you are not using the default names for these fields you will need to customize the corresponding field option.
 
 `doneStatuses` must include all "Complete" statuses from your task database. They are filtered from the task list.
 

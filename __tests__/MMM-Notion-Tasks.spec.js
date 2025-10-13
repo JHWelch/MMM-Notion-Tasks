@@ -19,7 +19,7 @@ it('has a default config', () => {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
-    nameType: 'full',
+    nameFormat: 'full',
   });
 });
 
@@ -214,7 +214,7 @@ describe('addFilters', () => {
 
     describe('config set to first name', () => {
       it('name filter returns first name', () => {
-        MMMNotionTasks.config.nameType = 'first';
+        MMMNotionTasks.config.nameFormat = 'first';
         MMMNotionTasks.addFilters();
         const nameFilter = getFilter();
 
@@ -224,7 +224,7 @@ describe('addFilters', () => {
 
     describe('config set to last name', () => {
       it('name filter returns last name', () => {
-        MMMNotionTasks.config.nameType = 'last';
+        MMMNotionTasks.config.nameFormat = 'last';
         MMMNotionTasks.addFilters();
         const nameFilter = getFilter();
 
@@ -234,7 +234,7 @@ describe('addFilters', () => {
 
     describe('config set to initials', () => {
       it('name filter returns initials', () => {
-        MMMNotionTasks.config.nameType = 'initials';
+        MMMNotionTasks.config.nameFormat = 'initials';
         MMMNotionTasks.addFilters();
         const nameFilter = getFilter();
 
@@ -244,7 +244,7 @@ describe('addFilters', () => {
 
     describe('config set to full name', () => {
       it('name filter returns full name', () => {
-        MMMNotionTasks.config.nameType = 'full';
+        MMMNotionTasks.config.nameFormat = 'full';
         MMMNotionTasks.addFilters();
         const nameFilter = getFilter();
 

@@ -13,7 +13,7 @@ Module.register('MMM-Notion-Tasks', {
     nameField: 'Name',
     statusField: 'Status',
     assigneeField: 'Assignee',
-    nameType: 'full',
+    nameFormat: 'full',
   },
 
   requiresVersion: '2.28.0',
@@ -83,7 +83,7 @@ Module.register('MMM-Notion-Tasks', {
 
   addFilters () {
     this.nunjucksEnvironment().addFilter('name', (name) => {
-      switch (this.config.nameType) {
+      switch (this.config.nameFormat) {
       case 'first':
         return name.split(' ')[0];
       case 'last':

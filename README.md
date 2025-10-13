@@ -69,7 +69,7 @@ var config = {
 | `nameField`      | *Optional*   | Update name of "Name" field. <br>Default `Name`                                 |
 | `statusField`    | *Optional*   | Update name of "Status" field. <br>Default `Status`                             |
 | `assigneeField`  | *Optional*   | Update name of "Assignee" field. <br>Default `Assignee`                         |
-| `nameType`       | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initial` |
+| `nameFormat`     | *Optional*   | How to display names. <br>Options: `full` (default), `first`, `last`, `initial` |
 
 ## Development
 

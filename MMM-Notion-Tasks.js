@@ -81,6 +81,18 @@ Module.register('MMM-Notion-Tasks', {
   },
 
   addFilters () {
-    this.nunjucksEnvironment().addFilter('name', (name) => name);
+    this.nunjucksEnvironment().addFilter('name', (name) => {
+      switch (this.config.nameType) {
+      case 'first':
+        return name.split(' ')[0];
+      case 'last':
+        return name.split(' ').slice(-1).join(' ');
+      case 'initials':
+        return name.split(' ').map((n) => n[0]).join('');
+      case 'full':
+      default:
+        return name;
+      }
+    });
   },
 });

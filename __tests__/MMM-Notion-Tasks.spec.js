@@ -190,3 +190,65 @@ describe('socketNotificationReceived', () => {
     });
   });
 });
+
+describe('addFilters', () => {
+  describe('name filter', () => {
+    const getFilter = () => MMMNotionTasks.nunjucksEnvironment()
+      .addFilter.mock.calls
+      .find((call) => call[0] === 'name')[1];
+
+    it('registers a name filter', () => {
+      MMMNotionTasks.addFilters();
+
+      expect(MMMNotionTasks.nunjucksEnvironment().addFilter)
+        .toHaveBeenCalledWith('name', expect.any(Function));
+    });
+
+    it('name filter returns name', () => {
+      MMMNotionTasks.addFilters();
+      const nameFilter = getFilter();
+
+      expect(nameFilter('Jordan Welch')).toBe('Jordan Welch');
+    });
+
+    describe('config set to first name', () => {
+      it('name filter returns first name', () => {
+        MMMNotionTasks.config.nameType = 'first';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Jordan');
+      });
+    });
+
+    describe('config set to last name', () => {
+      it('name filter returns last name', () => {
+        MMMNotionTasks.config.nameType = 'last';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Welch');
+      });
+    });
+
+    describe('config set to initials', () => {
+      it('name filter returns initials', () => {
+        MMMNotionTasks.config.nameType = 'initials';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('JW');
+      });
+    });
+
+    describe('config set to full name', () => {
+      it('name filter returns full name', () => {
+        MMMNotionTasks.config.nameType = 'full';
+        MMMNotionTasks.addFilters();
+        const nameFilter = getFilter();
+
+        expect(nameFilter('Jordan Welch')).toBe('Jordan Welch');
+      });
+    });
+  });
+});

@@ -1,4 +1,4 @@
-nunjucks = require('../../__mocks__/nunjucks');
+nunjucks = require('../__mocks__/nunjucks');
 
 translate = (str) => str;
 

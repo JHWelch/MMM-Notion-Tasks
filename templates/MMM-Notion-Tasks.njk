@@ -13,7 +13,7 @@
             {{ task.name }}
           </td>
           <td class="align-right">
-            {{ task.assignee }}
+            {{ task.assignee | name }}
           </td>
         </tr>
       {% endfor %}

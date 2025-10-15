@@ -107,9 +107,6 @@ Module.register('MMM-Notion-Tasks', {
   },
 
   today () {
-    return moment()
-      // .tz(timezone)
-      .startOf('day')
-      .format('YYYY-MM-DD');
+    return moment().format('YYYY-MM-DD');
   },
 });

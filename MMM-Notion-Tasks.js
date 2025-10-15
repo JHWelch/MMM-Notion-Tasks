@@ -57,6 +57,13 @@ Module.register('MMM-Notion-Tasks', {
     };
   },
 
+  getScripts () {
+    return [
+      'moment.js',
+      'moment-timezone.js',
+    ];
+  },
+
   getStyles () {
     return [
       'font-awesome.css',

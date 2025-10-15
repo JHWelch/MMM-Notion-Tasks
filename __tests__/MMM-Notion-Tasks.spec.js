@@ -142,6 +142,15 @@ describe('getTemplateData', () => {
   });
 });
 
+describe('getScripts', () => {
+  it('returns scripts path', () => {
+    expect(MMMNotionTasks.getScripts()).toEqual([
+      'moment.js',
+      'moment-timezone.js',
+    ]);
+  });
+});
+
 describe('getStyles', () => {
   it('returns styles path', () => {
     expect(MMMNotionTasks.getStyles()).toEqual([

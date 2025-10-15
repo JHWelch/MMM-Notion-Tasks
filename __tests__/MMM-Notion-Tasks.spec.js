@@ -1,3 +1,5 @@
+/* global moment */
+
 require('../__mocks__/Module');
 require('../__mocks__/globalLogger');
 

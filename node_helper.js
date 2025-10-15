@@ -42,7 +42,7 @@ module.exports = NodeHelper.create({
           {
             property: dueDateField,
             date: {
-              on_or_before: (new Date()).toISOString().split('T')[0],
+              on_or_before: this.today(),
             },
           },
         ],

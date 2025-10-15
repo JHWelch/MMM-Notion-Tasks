@@ -210,10 +210,22 @@ describe('socketNotificationReceived', () => {
 });
 
 describe('today', () => {
+  afterEach(() => {
+    delete process.env.TZ; // eslint-disable-line no-undef
+    jest.useRealTimers();
+  });
+
   it('returns today\'s date in YYYY-MM-DD format in UTC by default', () => {
-    const today = new Date(2023, 9, 1); // October 1, 2023
-    jest.useFakeTimers().setSystemTime(today);
+    jest.useFakeTimers().setSystemTime(new Date(Date.UTC(2023, 9, 1, 0, 30)));
 
     expect(helper.today()).toBe('2023-10-01');
+  });
+
+  it('will return today\'s date in YYYY-MM-DD format in a specific timezone', () => {
+    process.env.TZ = 'America/New_York'; // eslint-disable-line no-undef
+    // 2023-09-30 in America/New_York (EDT, UTC-4).
+    jest.useFakeTimers().setSystemTime(new Date(Date.UTC(2023, 9, 1, 0, 30)));
+
+    expect(helper.today()).toBe('2023-09-30');
   });
 });

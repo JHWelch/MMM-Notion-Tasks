@@ -68,6 +68,9 @@ module.exports = NodeHelper.create({
   },
 
   today () {
-    return moment().format('YYYY-MM-DD');
+    return moment()
+      .tz(process.env.TZ ?? 'UTC') // eslint-disable-line no-undef
+      .startOf('day')
+      .format('YYYY-MM-DD');
   },
 });

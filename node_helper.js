@@ -1,3 +1,5 @@
+/* global moment */
+
 /* Magic Mirror
  * Node Helper: MMM-Notion-Tasks
  *
@@ -63,5 +65,9 @@ module.exports = NodeHelper.create({
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });
+  },
+
+  today () {
+    return moment().format('YYYY-MM-DD');
   },
 });

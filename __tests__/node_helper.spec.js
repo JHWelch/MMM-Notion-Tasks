@@ -208,3 +208,12 @@ describe('socketNotificationReceived', () => {
     });
   });
 });
+
+describe('today', () => {
+  it('returns today\'s date in YYYY-MM-DD format in UTC by default', () => {
+    const today = new Date(2023, 9, 1); // October 1, 2023
+    jest.useFakeTimers().setSystemTime(today);
+
+    expect(helper.today()).toBe('2023-10-01');
+  });
+});

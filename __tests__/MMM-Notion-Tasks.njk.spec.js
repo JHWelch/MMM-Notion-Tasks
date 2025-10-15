@@ -49,6 +49,17 @@ describe('with task data', () => {
   });
 });
 
+describe('no task data', () => {
+  beforeEach(() => {
+    data = { loading: false, tasks: [] };
+    template = nunjucks.render('MMM-Notion-Tasks.njk', data);
+  });
+
+  it('shows no tasks message', () => {
+    expect(template).toContain('EMPTY');
+  });
+});
+
 describe('no past due task', () => {
   beforeEach(() => {
     data = { loading: false, tasks: [{

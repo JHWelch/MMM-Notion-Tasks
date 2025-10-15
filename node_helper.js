@@ -1,5 +1,3 @@
-/* global moment */
-
 /* Magic Mirror
  * Node Helper: MMM-Notion-Tasks
  *
@@ -28,6 +26,7 @@ module.exports = NodeHelper.create({
     nameField,
     statusField,
     doneStatuses,
+    today,
   }) {
     const notion = new Client({ auth: notionToken });
 
@@ -42,7 +41,7 @@ module.exports = NodeHelper.create({
           {
             property: dueDateField,
             date: {
-              on_or_before: this.today(),
+              on_or_before: today,
             },
           },
         ],
@@ -55,7 +54,6 @@ module.exports = NodeHelper.create({
       ],
     });
 
-    const today = (new Date()).toISOString().split('T')[0];
     const tasks = response.results.map((page) => ({
       id: page.id,
       name: page.properties[nameField].title[0]?.text.content || '-',
@@ -65,12 +63,5 @@ module.exports = NodeHelper.create({
     }));
 
     this.sendSocketNotification('MMM-Notion-Tasks-DATA', { tasks });
-  },
-
-  today () {
-    return moment()
-      .tz(process.env.TZ ?? 'UTC') // eslint-disable-line no-undef
-      .startOf('day')
-      .format('YYYY-MM-DD');
   },
 });

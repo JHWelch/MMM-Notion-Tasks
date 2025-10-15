@@ -11,6 +11,13 @@ beforeEach(() => {
 
   MMMNotionTasks = global.Module.create(name);
   MMMNotionTasks.setData({ name, identifier: `Module_1_${name}` });
+
+  const date = new Date(2023, 9, 1); // October 1, 2023
+  jest.useFakeTimers().setSystemTime(date);
+});
+
+afterEach(() => {
+  jest.useRealTimers();
 });
 
 it('has a default config', () => {
@@ -43,6 +50,7 @@ describe('start', () => {
     nameField: 'Name',
     statusField: 'Status',
     doneStatuses: ['Done'],
+    today: '2023-10-01',
   };
 
   beforeEach(() => {
@@ -268,5 +276,22 @@ describe('addFilters', () => {
         expect(nameFilter('Jordan Welch')).toBe('Jordan Welch');
       });
     });
+  });
+});
+
+describe('today', () => {
+  it('returns today\'s date in YYYY-MM-DD format in UTC by default', () => {
+    moment.tz.setDefault('UTC');
+    jest.useFakeTimers().setSystemTime(new Date(Date.UTC(2023, 9, 1, 0, 30)));
+
+    expect(MMMNotionTasks.today()).toBe('2023-10-01');
+  });
+
+  it('will return today\'s date in YYYY-MM-DD format in a specific timezone', () => {
+    moment.tz.setDefault('America/New_York');
+    // 2023-09-30 in America/New_York (EDT, UTC-4).
+    jest.useFakeTimers().setSystemTime(new Date(Date.UTC(2023, 9, 1, 0, 30)));
+
+    expect(MMMNotionTasks.today()).toBe('2023-09-30');
   });
 });

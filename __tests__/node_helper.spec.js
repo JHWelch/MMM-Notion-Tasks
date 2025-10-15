@@ -28,6 +28,7 @@ describe('socketNotificationReceived', () => {
         nameField: 'Name',
         statusField: 'Status',
         doneStatuses: ['Done'],
+        today: '2023-10-01',
       };
 
       beforeEach(() => {
@@ -120,6 +121,7 @@ describe('socketNotificationReceived', () => {
         nameField: 'CustomNameField',
         statusField: 'CustomStatusField',
         doneStatuses: ['Deployed', 'Canceled'],
+        today: '2023-10-01',
       };
 
       beforeEach(() => {

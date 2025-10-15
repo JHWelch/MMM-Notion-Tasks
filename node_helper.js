@@ -26,6 +26,7 @@ module.exports = NodeHelper.create({
     nameField,
     statusField,
     doneStatuses,
+    today,
   }) {
     const notion = new Client({ auth: notionToken });
 
@@ -40,7 +41,7 @@ module.exports = NodeHelper.create({
           {
             property: dueDateField,
             date: {
-              on_or_before: (new Date()).toISOString().split('T')[0],
+              on_or_before: today,
             },
           },
         ],
@@ -53,7 +54,6 @@ module.exports = NodeHelper.create({
       ],
     });
 
-    const today = (new Date()).toISOString().split('T')[0];
     const tasks = response.results.map((page) => ({
       id: page.id,
       name: page.properties[nameField].title[0]?.text.content || '-',

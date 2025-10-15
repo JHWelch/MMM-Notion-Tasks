@@ -1,4 +1,5 @@
 /* global Module */
+/* global moment */
 
 /* Magic Mirror
  * Module: MMM-Notion-Tasks
@@ -43,6 +44,7 @@ Module.register('MMM-Notion-Tasks', {
       nameField: this.config.nameField,
       statusField: this.config.statusField,
       doneStatuses: this.config.doneStatuses,
+      today: this.today(),
     });
   },
 
@@ -55,6 +57,13 @@ Module.register('MMM-Notion-Tasks', {
       loading: this.loading,
       tasks: this.data?.tasks || [],
     };
+  },
+
+  getScripts () {
+    return [
+      'moment.js',
+      'moment-timezone.js',
+    ];
   },
 
   getStyles () {
@@ -95,5 +104,9 @@ Module.register('MMM-Notion-Tasks', {
           return name;
       }
     });
+  },
+
+  today () {
+    return moment().format('YYYY-MM-DD');
   },
 });
